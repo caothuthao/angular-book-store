@@ -1,36 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-
-import { products } from './shared/mock-data/product-list';
-import { AppUser } from './shared/models/app-user';
-import { Product } from './shared/models/product';
+import { Component, ViewChild } from '@angular/core';
+import { ProductListComponent } from './store/product-list/product-list.component';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title: string;
-  user: AppUser = {
-    $key: '1',
-    name: 'Tống Minh Giang',
-    email: 'monkeytgoku@gmail.com',
-    isAdmin: true
-  };
-  products: Product[] = [];
 
-  notify = [
-    {
-      content: 'Từ 29/2/2020, Tiki miễn phí giao tiêu chuẩn cho đơn hàng từ 250k, áp dụng phí 19k cho đơn hàng dưới 250k.',
-      date: '28/02/2020'
-    }
-  ];
+export class AppComponent {
+  selectedProductId: string;
 
-  constructor() {
-
+  constructor(private authService: AuthService) {
+    authService.refreshToken();
   }
 
-  ngOnInit(): void {
-    this.products = products;
+  handleSelectedProduct(productId: string): void {
+    this.selectedProductId = productId;
   }
 }

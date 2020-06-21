@@ -1,0 +1,56 @@
+<h3 style="margin-bottom: 40px;">{{product.title}}</h3>
+
+<div class="row" style="margin-bottom: 80px;">
+    <div class="col-sm-4">
+        <img [src]="product.imageUrl" height="450px;" width="380px;"/>
+    </div>
+    <div class="col-sm-8" style="padding-left: 100px;">
+        <table class="table table-condensed">
+              <tr>
+                <th>ID</th>
+                <td>{{product.$key}}</td>              
+              </tr>
+              <tr>
+                <th>Title</th>
+                <td>{{product.title}}</td>              
+              </tr>
+              <tr>
+                <th>Image Url</th>
+                <td>{{product.imageUrl}}</td>              
+              </tr>
+              <tr>
+                <th>Author</th>
+                <td>{{product.author}}</td>              
+              </tr>
+              <tr>
+                <th>Final Price</th>
+                <td>{{product.finalPrice}}</td>              
+              </tr>
+              <tr>
+                <th>Regular Price</th>
+                <td>{{product.regularPrice}}</td>              
+              </tr>
+              <tr>
+                <th>Publisher</th>
+                <td>{{product.publisher}}</td>              
+              </tr>
+              <tr>
+                <th>Published Date</th>
+                <td>{{product.publishedDate}}</td>              
+              </tr>
+              <tr>
+                <th>Size</th>
+                <td>{{product.size}}</td>              
+              </tr>
+              <tr>
+                <th>Page Count</th>
+                <td>{{product.pageCount}}</td>              
+              </tr>
+              <tr>
+                <th>TikiNow</th>
+                <td>{{product.isTikiNow}}</td>              
+              </tr>
+          </table>
+    </div>
+    
+  </div>

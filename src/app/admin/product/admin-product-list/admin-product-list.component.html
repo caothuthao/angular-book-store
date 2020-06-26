@@ -1,7 +1,14 @@
-<div class="fit-body"> 
-    <table class="table table-hover" style="margin: 120px 0px;">
+
+<div class="fit-body">
+
+
+    <!-- <button type="button" class="btn btn-default" style="margin: 120px 0px;" (click)="submit()">Button</button> -->
+
+    <button id="btnAdd" type="button" class="btn btn-primary" (click)="onClickAdd()">Add Product</button> 
+
+    <table class="table table-hover" style="margin-top: 0px;">
         <thead>
-            <tr>
+            <tr class="table-primary">
                 <th>Title</th>
                 <th>Author</th>
                 <th>Publisher</th>
@@ -19,6 +26,12 @@
         </tbody>    
     </table>
 
+    
+
     <app-admin-product-detail [product]="selectedProduct"></app-admin-product-detail>
+
+    <!-- <app-admin-product-form *ngIf="isAdding" ></app-admin-product-form> -->
+
+    <app-admin-product-reactive-form *ngIf="isAdding"></app-admin-product-reactive-form>
 
 </div>

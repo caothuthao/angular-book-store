@@ -13,11 +13,6 @@ export class LoginComponent implements OnInit {
   invalidUser = false;
   subscription: Subscription;
 
-  user = {
-    email:'thaoctt',
-    password: '123456'
-  }
-
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -26,6 +21,7 @@ export class LoginComponent implements OnInit {
   login(loginForm): void {
     this.invalidUser = false;
     const user = loginForm.value;
+    console.log(user);
     this.subscription = this.authService.login(user).subscribe(result => {
       if (result) {
         this.invalidUser = false;

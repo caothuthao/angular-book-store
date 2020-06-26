@@ -1,0 +1,131 @@
+<form novalidate (ngSubmit)="onSubmit(adding.value)" [formGroup]="adding"
+    class="row justify-content-md-center">
+    <div class="col-md-4">
+        <img [src]="adding.controls.imageUrl.value"/>
+    </div>
+    
+    <div class="col-md-4">
+
+      <div class="form-group row">
+        <label class="col-form-label">Title</label>
+        <input class="form-control" type="text" name="title">
+        <div class="col-md-10">  
+            <div *ngIf="adding.controls.imageUrl?.touched
+                && adding.controls.title?.invalid            
+                && adding.controls.title?.errors?.required"
+                class="col alert alert-danger" role="alert">
+                Please provide an title.
+            </div>
+        </div>       
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label">Image Url</label>
+        <input class="form-control" type="url" name="imageUrl" id="imageUrl"
+            pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)">
+            <div class="col-md-10">         
+                <div *ngIf="adding.controls.imageUrl?.touched
+                  && adding.controls.imageUrl?.invalid
+                  && adding.controls.imageUrl?.errors?.required "
+                  class="col alert alert-danger" role="alert">
+                  Please provide an image Url.
+                </div>
+                <div *ngIf="adding.controls.imageUrl?.errors?.pattern"
+                class="col alert alert-danger" role="alert">
+                  Please provide a valid Url.
+                </div>
+              </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label">Author</label>
+        <input class="form-control" type="text" name="author">
+        <div class="col-md-10">  
+            <div *ngIf="adding.controls.imageUrl?.touched
+                && adding.controls.author?.invalid            
+                && adding.controls.author?.errors?.required"
+                class="col alert alert-danger" role="alert">
+                Please provide an Author name.
+            </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label">Final Price</label>
+        <input class="form-control" type="text" name="finalPrice">
+        <div class="col-md-10">  
+            <div *ngIf="adding.controls.imageUrl?.touched
+                && adding.controls.finalPrice?.invalid            
+                && adding.controls.finalPrice?.errors?.required"
+                class="col alert alert-danger" role="alert">
+                Please provide an Final Price.
+            </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label">Regular Price</label>
+        <input class="form-control" type="tel" name="regularPrice">
+        <div class="col-md-10">  
+            <div *ngIf="adding.controls.imageUrl?.touched
+                && adding.controls.regularPrice?.invalid            
+                && adding.controls.regularPrice?.errors?.required"
+                class="col alert alert-danger" role="alert">
+                Please provide an Regular Price.
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group row">
+            <label class="col-form-label">Publisher</label>           
+            <select class="form-control" type="tel" name="publisher">
+            <option *ngFor="let p of publishers">{{p.value}}</option>
+            </select>  
+            <div class="col-md-10">  
+                <div *ngIf="adding.controls.imageUrl?.touched
+                    && adding.controls.publisher?.invalid            
+                    && adding.controls.publisher?.errors?.required"
+                    class="col alert alert-danger" role="alert">
+                    Please provide an Publisher.
+                </div>
+            </div>      
+        </div>
+
+        <div class="form-group row">
+            <label  class="col-form-label">Published Date</label>         
+            <input class="form-control" type="tel" name="publishedDate">
+            
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label">Size</label>           
+            <input class="form-control" type="tel" name="size">          
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label">Page Count</label>
+            <input class="form-control" type="tel" name="pageCount">
+        </div>
+
+        <div id="isTikiNowDiv">
+            <label>TikiNow</label><br/>
+            <div id="divRadioTikiNow">
+              <div class="form-check-inline form-check">
+                <input type="radio" class="form-check-input" value="true" name="isTikiNow">
+                <label class="form-check-label">Active</label>
+              </div>
+
+              <div class="form-check-inline form-check">
+                <input type="radio" class="form-check-input" value="false" name="isTikiNow">
+                <label class="form-check-label">Inactive</label>
+              </div>
+            </div>
+            
+        </div>
+
+        <button class="btn btn-primary" id="btnSubmit" type="submit">Submit</button>
+    </div>
+  </form>
+

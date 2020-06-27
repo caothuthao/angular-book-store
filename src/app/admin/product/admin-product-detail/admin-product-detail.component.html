@@ -1,8 +1,8 @@
-<h3 style="margin-bottom: 40px;">{{product.title}}</h3>
+<h3 style="margin-bottom: 40px;">{{product?.title}}</h3>
 
 <div class="row" style="margin-bottom: 80px;" *ngIf="product">
     <div class="col-sm-4">
-        <img [src]="product.imageUrl" height="450px;" width="380px;"/>
+        <img [src]="product?.imageUrl" height="430px;" width="380px;"/>
     </div>
     <div class="col-sm-8" style="padding-left: 100px;">
         <table class="table table-condensed">

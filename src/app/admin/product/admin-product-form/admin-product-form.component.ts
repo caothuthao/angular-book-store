@@ -24,13 +24,21 @@ export class AdminProductFormComponent implements OnInit {
   invalidBook = false;
   subscription: Subscription;
 
+  defaultTikiNow = 'false';
+
   ngOnInit(): void {
     this.publishers = publishers;
   }
 
-  add(productAdd): void{
+  add(addForm): void{
     //console.log(productAdd);
-    this.productService.createProduct(productAdd);
+    const productAdd = addForm.value;
+    const publisher = publishers.find (ele => ele.$key === productAdd.publisher);
+    const product = new Product({
+      ...productAdd,
+      publisher:publisher?publisher.value:''
+    });
+    this.productService.createProduct(product);
     //this.productService.createProduct(product).subscribe(result => console.log(result));
   }
 

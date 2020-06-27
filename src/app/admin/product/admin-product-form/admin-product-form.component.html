@@ -1,6 +1,6 @@
 <form #addForm="ngForm" ngForm novalidate class="row justify-content-md-center">
     <div class="col-md-4">
-        <img [src]="imageUrl.value" />
+        <img [src]="imageUrl.value"/>
     </div>
     
     <div class="col-md-4">
@@ -92,7 +92,7 @@
             <select class="form-control" type="tel" id="example-publisher"
             required
             ngModel #publisher="ngModel" name="publisher" >
-            <option *ngFor="let p of publishers">{{p.value}}</option>
+            <option *ngFor="let p of publishers" [value]="p.$key">{{p.value}}</option>
             </select>
             <div class="col-md-10">
               <div *ngIf="publisher?.touched
@@ -131,18 +131,18 @@
 
             <div id="divRadioTikiNow">
               <div class="form-check-inline form-check">
-                <input type="radio" ngModel #isTikiNow="ngModel" class="form-check-input" value="true" name="isTikiNow">
+                <input type="radio" [(ngModel)]="defaultTikiNow" #isTikiNow="ngModel" class="form-check-input" value="true" name="isTikiNow">
                 <label class="form-check-label">Active</label>
               </div>
 
               <div class="form-check-inline form-check">
-                <input type="radio" ngModel #isTikiNow="ngModel" class="form-check-input" value="false" name="isTikiNow">
+                <input type="radio" [(ngModel)]="defaultTikiNow" #isTikiNow="ngModel" class="form-check-input" value="false" name="isTikiNow">
                 <label class="form-check-label">Inactive</label>
               </div>
             </div>
             
         </div>
 
-        <button class="btn btn-primary" id="btnSubmit" type="submit" [disabled]="addForm.invalid" (click)="add(addForm.value)">Submit</button>
+        <button class="btn btn-primary" id="btnSubmit" type="submit" [disabled]="addForm.invalid" (click)="add(addForm)">Submit</button>
     </div>
   </form>

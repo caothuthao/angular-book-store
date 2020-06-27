@@ -6,6 +6,7 @@ import { publishers } from 'src/app/shared/mock-data/publisher-list';
 
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Subscription } from 'rxjs';
+import { Product } from 'src/app/shared/models/product';
 
 @Component({
   selector: 'app-admin-product-reactive-form',
@@ -39,9 +40,11 @@ export class AdminProductReactiveFormComponent implements OnInit {
   }
 
   onSubmit(productAdd) {
-    console.log(productAdd);
-    
-    this.productService.createProduct(productAdd);
+    const publisher = publishers.find (ele=>ele.$key===productAdd.publisher);
+    const product = new Product({
+      ...productAdd,
+      publisher:publisher? publisher.value:''
+    });  
+    this.productService.createProduct(product);
   }
-
 }

@@ -20,16 +20,17 @@ export class AdminProductListComponent implements OnInit {
 
   isAdding: boolean = false;
 
+  product: Product;
+
   ngOnInit(): void {
     this.products = products;
     this.productService.$newProduct.subscribe(newProduct => {
       this.products.push(newProduct);
       this.isAdding = false;
-    })
-    
+    });   
   }
 
-  viewDetail(p){
+  viewDetail(p: Product){
     this.selectedProduct = p;
   }
 

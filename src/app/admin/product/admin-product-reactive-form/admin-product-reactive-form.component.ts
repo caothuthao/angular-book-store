@@ -27,6 +27,7 @@ export class AdminProductReactiveFormComponent implements OnInit {
     this.publishers = publishers;
 
     this.productForm = new FormGroup({
+      id: new FormControl(this.product.id, Validators.required),
       title: new FormControl(this.product.title, Validators.required),
       imageUrl: new FormControl(this.product.imageUrl, [Validators.required, Validators.pattern('(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)')]),
       author: new FormControl(this.product.author, Validators.required),

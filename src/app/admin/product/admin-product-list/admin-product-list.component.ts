@@ -33,8 +33,8 @@ export class AdminProductListComponent implements OnInit {
     this.selectedProduct = p;
   }
 
-  setProduct(pSet: Product){
-    this.selectedProductEdit = pSet;
+  setProduct(product: Product){
+    this.selectedProductEdit = product;
     this.isEditting = true;
   }
 

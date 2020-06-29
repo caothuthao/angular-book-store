@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Input} from '@angular/core';
 
 import { Product } from 'src/app/shared/models/product';
-import { products } from 'src/app/shared/mock-data/product-list';
 
 import { ProductService } from 'src/app/shared/services/product.service';
 
@@ -18,20 +17,32 @@ export class AdminProductListComponent implements OnInit {
 
   selectedProduct: Product;
 
+  selectedProductEdit: Product;
+
   isAdding: boolean = false;
+
+  isEditting: boolean = false;
 
   product: Product;
 
   ngOnInit(): void {
-    this.products = products;
-    this.productService.$newProduct.subscribe(newProduct => {
-      this.products.push(newProduct);
-      this.isAdding = false;
-    });   
+    this.productService.getProduct().subscribe(res => this.products = res);
   }
 
   viewDetail(p: Product){
     this.selectedProduct = p;
+  }
+
+  setProduct(pSet: Product){
+    this.selectedProductEdit = pSet;
+    this.isEditting = true;
+  }
+
+  deleteProduct(product: Product) {
+    const res = confirm('Are you sure you want to delete?');
+    if (res) {
+      this.productService.deleteProduct(product.id).subscribe(result => console.log(result));
+    }
   }
 
   onClickAdd(){
@@ -43,7 +54,7 @@ export class AdminProductListComponent implements OnInit {
   }
   // submit(){
   //   var p = {
-  //        $key: '1',
+  //        id: '1',
   //       title: 'Guinness World Records 2019: Wild Things (Paperback)',
   //       imageUrl: 'https://salt.tikicdn.com/cache/280x280/ts/product/ca/c9/70/743112ce044389f3155b72bb2629ca2f.jpg',
   //       author: 'Guinness World Records',

@@ -1,9 +1,9 @@
 <h3>This is a Reactive Form</h3>
 
-<form novalidate (ngSubmit)="onSubmit(adding.value)" [formGroup]="adding"
+<form novalidate (ngSubmit)="onSubmit()" [formGroup]="productForm"
     class="row justify-content-md-center">
     <div class="col-md-4">
-        <img [src]="adding.controls.imageUrl.value"/>
+        <img [src]="productForm.controls.imageUrl.value"/>
     </div>
     
     <div class="col-md-4">
@@ -12,9 +12,9 @@
         <label class="col-form-label">Title</label>
         <input class="form-control" type="text" formControlName="title">
         <div class="col-md-10">  
-            <div *ngIf="adding.controls.title?.touched
-                && adding.controls.title?.invalid            
-                && adding.controls.title?.errors?.required"
+            <div *ngIf="productForm.controls.title?.touched
+                && productForm.controls.title?.invalid            
+                && productForm.controls.title?.errors?.required"
                 class="col alert alert-danger" role="alert">
                 Please provide an title.
             </div>
@@ -25,16 +25,16 @@
         <label class="col-form-label">Image Url</label>
         <input class="form-control" type="url" formControlName="imageUrl">
         <div class="col-md-10">         
-          <div *ngIf="adding.controls.imageUrl?.touched
-              && adding.controls.imageUrl?.invalid
-              && adding.controls.imageUrl?.errors?.required "
+          <div *ngIf="productForm.controls.imageUrl?.touched
+              && productForm.controls.imageUrl?.invalid
+              && productForm.controls.imageUrl?.errors?.required "
               class="col alert alert-danger" role="alert">
               Please provide an image Url.
           </div>
-          <!-- <div *ngIf="adding.controls.imageUrl?.errors?.pattern"
+          <div *ngIf="productForm.controls.imageUrl?.errors?.pattern"
             class="col alert alert-danger" role="alert">
               Please provide a valid Url.
-          </div> -->
+          </div>
         </div>
       </div>
 
@@ -42,9 +42,9 @@
         <label class="col-form-label">Author</label>
         <input class="form-control" type="text" formControlName="author">
         <div class="col-md-10">  
-            <div *ngIf="adding.controls.author?.touched
-                && adding.controls.author?.invalid            
-                && adding.controls.author?.errors?.required"
+            <div *ngIf="productForm.controls.author?.touched
+                && productForm.controls.author?.invalid            
+                && productForm.controls.author?.errors?.required"
                 class="col alert alert-danger" role="alert">
                 Please provide an Author name.
             </div>
@@ -55,9 +55,9 @@
         <label class="col-form-label">Final Price</label>
         <input class="form-control" type="text" formControlName="finalPrice">
         <div class="col-md-10">  
-            <div *ngIf="adding.controls.finalPrice?.touched
-                && adding.controls.finalPrice?.invalid            
-                && adding.controls.finalPrice?.errors?.required"
+            <div *ngIf="productForm.controls.finalPrice?.touched
+                && productForm.controls.finalPrice?.invalid            
+                && productForm.controls.finalPrice?.errors?.required"
                 class="col alert alert-danger" role="alert">
                 Please provide an Final Price.
             </div>
@@ -68,9 +68,9 @@
         <label class="col-form-label">Regular Price</label>
         <input class="form-control" type="tel" formControlName="regularPrice">
         <div class="col-md-10">  
-            <div *ngIf="adding.controls.regularPrice?.touched
-                && adding.controls.regularPrice?.invalid            
-                && adding.controls.regularPrice?.errors?.required"
+            <div *ngIf="productForm.controls.regularPrice?.touched
+                && productForm.controls.regularPrice?.invalid            
+                && productForm.controls.regularPrice?.errors?.required"
                 class="col alert alert-danger" role="alert">
                 Please provide an Regular Price.
             </div>
@@ -82,12 +82,12 @@
         <div class="form-group row">
             <label class="col-form-label">Publisher</label>           
             <select class="form-control" type="tel" formControlName="publisher">
-            <option *ngFor="let p of publishers" [value]="p.$key">{{p.value}}</option>
+            <option *ngFor="let p of publishers" [value]="p.value">{{p.value}}</option>
             </select>  
             <div class="col-md-10">  
-                <div *ngIf="adding.controls.publisher?.touched
-                    && adding.controls.publisher?.invalid            
-                    && adding.controls.publisher?.errors?.required"
+                <div *ngIf="productForm.controls.publisher?.touched
+                    && productForm.controls.publisher?.invalid            
+                    && productForm.controls.publisher?.errors?.required"
                     class="col alert alert-danger" role="alert">
                     Please provide an Publisher.
                 </div>
@@ -126,7 +126,7 @@
             
         </div>
 
-        <button class="btn btn-primary" id="btnSubmit" type="submit" [disabled]="adding.invalid" >Submit</button>
+        <button class="btn btn-primary" id="btnSubmit" type="submit" >Submit</button>
     </div>
   </form>
 

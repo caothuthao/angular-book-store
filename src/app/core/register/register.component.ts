@@ -19,11 +19,7 @@ export class RegisterComponent implements OnInit {
       name: new FormControl('', [Validators.required, forbiddenNameValidator(/admin/i)]),
       email: new FormControl('', Validators.required),
       mobile: new FormControl('', Validators.required),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      social: new FormGroup({
-        facebook: new FormControl(),
-        twitter: new FormControl()
-      })
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
 
     // this.registerForm = this.fb.group({
@@ -31,10 +27,6 @@ export class RegisterComponent implements OnInit {
     //   email: this.fb.control('', Validators.required),
     //   mobile: this.fb.control('', Validators.required),
     //   password: this.fb.control('', [Validators.required, Validators.minLength(6)]),
-    //   social: this.fb.group({
-    //     facebook: this.fb.control(''),
-    //     twitter: this.fb.control('')
-    //   })
     // });
 
     // this.registerForm = this.fb.group({
@@ -42,20 +34,17 @@ export class RegisterComponent implements OnInit {
     //   email: ['', Validators.required],
     //   mobile: ['', Validators.required],
     //   password: ['', [Validators.required, Validators.minLength(6)]],
-    //   social: this.fb.group({
-    //     facebook: [''],
-    //     twitter: ['']
-    //   })
+
     // });
 
-    this.registerForm = this.fb.group({
-      name: this.fb.control('', Validators.required),
-      email: this.fb.control('', Validators.required),
-      mobile: this.fb.array([
-        this.fb.control('', Validators.required)
-      ]),
-      password: this.fb.control('', [Validators.required, Validators.minLength(6)])
-    });
+    // this.registerForm = this.fb.group({
+    //   name: this.fb.control('', Validators.required),
+    //   email: this.fb.control('', Validators.required),
+    //   mobile: this.fb.array([
+    //     this.fb.control('', Validators.required)
+    //   ]),
+    //   password: this.fb.control('', [Validators.required, Validators.minLength(6)])
+    // });
 
     setTimeout(() => {
       // this.registerForm.setValue({

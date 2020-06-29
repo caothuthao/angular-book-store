@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -14,10 +14,11 @@ import { Product } from 'src/app/shared/models/product';
   styleUrls: ['./admin-product-reactive-form.component.scss']
 })
 export class AdminProductReactiveFormComponent implements OnInit {
+  @Input() product: Product;
 
-  adding: FormGroup;
+  productForm: FormGroup;
 
-  publishers;
+  publishers = [];
   subscription: Subscription;
 
   constructor(private productService: ProductService) { }
@@ -25,26 +26,24 @@ export class AdminProductReactiveFormComponent implements OnInit {
   ngOnInit(): void {
     this.publishers = publishers;
 
-    this.adding = new FormGroup({
-      title: new FormControl('',Validators.required),
-      imageUrl: new FormControl('',Validators.required),
-      author: new FormControl('',Validators.required),
-      finalPrice: new FormControl('',Validators.required),
-      regularPrice: new FormControl('',Validators.required),
-      publisher: new FormControl('',Validators.required),
-      publishedDate: new FormControl(),
-      size: new FormControl(),
-      pageCount: new FormControl(),
-      isTikiNow: new FormControl()
+    this.productForm = new FormGroup({
+      title: new FormControl(this.product.title, Validators.required),
+      imageUrl: new FormControl(this.product.imageUrl, [Validators.required, Validators.pattern('(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)')]),
+      author: new FormControl(this.product.author, Validators.required),
+      finalPrice: new FormControl(this.product.finalPrice, Validators.required),
+      regularPrice: new FormControl(this.product.regularPrice, Validators.required),
+      publisher: new FormControl(this.product.publisher, Validators.required),
+      publishedDate: new FormControl(this.product.publishedDate),
+      size: new FormControl(this.product.size),
+      pageCount: new FormControl(this.product.pageCount),
+      isTikiNow: new FormControl(this.product.isTikiNow)
     });
   }
 
-  onSubmit(productAdd) {
-    const publisher = publishers.find (ele=>ele.$key===productAdd.publisher);
-    const product = new Product({
-      ...productAdd,
-      publisher:publisher? publisher.value:''
-    });  
-    this.productService.createProduct(product);
+
+  onSubmit(): void {
+    const product = new Product(this.productForm.value);
+    this.productService.updateProduct(product).subscribe(result => console.log(result));
   }
+
 }

@@ -92,7 +92,7 @@
             <select class="form-control" type="tel" id="example-publisher"
             required
             ngModel #publisher="ngModel" name="publisher" >
-            <option *ngFor="let p of publishers" [value]="p.$key">{{p.value}}</option>
+            <option *ngFor="let p of publishers" [value]="p.value">{{p.value}}</option>
             </select>
             <div class="col-md-10">
               <div *ngIf="publisher?.touched
